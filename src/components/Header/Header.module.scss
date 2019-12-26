@@ -1,0 +1,12 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  div:first-child {
+    margin-right: 8px;
+  }
+}

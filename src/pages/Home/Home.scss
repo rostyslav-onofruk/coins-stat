@@ -1,0 +1,17 @@
+.container {
+  max-width: 900px;
+  padding: 16px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  margin-bottom: 32px;
+
+  & > *:not(:last-child) {
+    margin-right: 8px;
+  }
+}
+
+.coinImage {
+  width: 24px;
+}
