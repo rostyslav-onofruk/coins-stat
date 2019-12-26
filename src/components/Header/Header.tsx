@@ -10,6 +10,7 @@ const Header: FC = () => {
 
     const logout = () => {
         localStorage.clear();
+        window.dispatchEvent( new Event('storage') );
     };
 
     return (

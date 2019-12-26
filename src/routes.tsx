@@ -12,7 +12,7 @@ const Routes: FunctionComponent = () => {
 
     window.addEventListener('storage', () => {
         setIsSignedIn(localStorage.getItem('userId'));
-    });
+    }, false);
 
     return (
         <Router history={history}>

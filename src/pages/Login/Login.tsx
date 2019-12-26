@@ -29,6 +29,7 @@ const Login = () => {
         localStorage.setItem('userName', profile.getName());
         localStorage.setItem('userImg', profile.getImageUrl());
         localStorage.setItem('userId', userId);
+        window.dispatchEvent( new Event('storage') );
 
         setUserId(userId);
     };
