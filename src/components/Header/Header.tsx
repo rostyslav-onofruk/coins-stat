@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {AppBar, Avatar, Toolbar, Button} from "@material-ui/core";
 import {GoogleLogout} from 'react-google-login';
 
-import classes from './Header.module.scss';
+import classes from './Header.scss';
 
 const Header: FC = () => {
     const imgSrc= localStorage.getItem('userImg') as string;

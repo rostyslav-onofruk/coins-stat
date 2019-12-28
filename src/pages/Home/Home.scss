@@ -1,6 +1,7 @@
 .container {
   max-width: 900px;
   padding: 16px;
+  margin: 0 auto;
 }
 
 .buttonsWrapper {
@@ -14,4 +15,26 @@
 
 .coinImage {
   width: 24px;
+}
+
+.bigCoinImage {
+  width: 48px;
+  margin-right: 16px;
+}
+
+.card {
+  margin: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: lightgray;
+
+  div:first-child {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+  }
 }

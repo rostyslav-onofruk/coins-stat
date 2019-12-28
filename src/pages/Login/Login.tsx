@@ -37,7 +37,7 @@ const Login = () => {
     return (
         <div className={classes.content}>
             <div>
-                Welcome check weather app
+                Welcome Coins Stat App
             </div>
             <GoogleLogin
                 clientId="364643492164-lj63hjopspt4epse5ldmjq4t7fjgku6e.apps.googleusercontent.com"
