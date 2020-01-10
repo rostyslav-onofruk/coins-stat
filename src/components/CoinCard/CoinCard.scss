@@ -1,0 +1,25 @@
+.card {
+  margin: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: lightgray;
+
+  div:first-child {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+  }
+}
+
+.bigCoinImage {
+  width: 48px;
+  margin-right: 16px;
+}
+
+.coinCardsWrapper {
+  margin: 0 -16px;
+}
