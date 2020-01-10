@@ -4,7 +4,7 @@ import {Button, TextField,} from "@material-ui/core";
 import {Autocomplete} from '@material-ui/lab';
 import Header from '../../components/Header/Header';
 import CoinCard from '../../components/CoinCard/CoinCard';
-import {fetchAllCoins, fetchCoin} from '../../actions/coins-actions';
+import {fetchAllCoins, fetchCoin, removeCoinData} from '../../actions/coins-actions';
 import {FullCoin, ShortCoin} from '../../interfaces/coins';
 import {Base} from "../../interfaces/base";
 
@@ -44,6 +44,10 @@ const Home: FC = () => {
         setSelectedId(0);
     };
 
+    const removeCoin = (id: number) => {
+        dispatch(removeCoinData(id));
+    };
+
     return (
         <div>
             <Header/>
@@ -80,7 +84,7 @@ const Home: FC = () => {
                 </div>
                 {coinsDetails && (<div className={classes.coinCardsWrapper}>
                     {[...coinsDetails].reverse().map((coin: FullCoin) =>
-                        <CoinCard key={coin.id} coin={coin} refreshData={getCoinInfo}/>)}
+                        <CoinCard key={coin.id} coin={coin} refreshData={getCoinInfo} removeCoin={removeCoin}/>)}
                 </div>)}
             </div>
         </div>

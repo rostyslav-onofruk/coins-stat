@@ -9,15 +9,17 @@ import {State} from "../../pages/Home/Home";
 
 const Header: FC = () => {
     const [open, setOpen] = useState(false);
+    const [length, setLength] = useState(-1);
     const imgSrc = localStorage.getItem('userImg') as string;
     const userName = localStorage.getItem('userName') as string;
     const {coinsDetails} = useSelector((state: State) => state.coinsData.data);
 
     useEffect(() => {
-        if (coinsDetails.length) {
+        if (coinsDetails.length && coinsDetails.length >= length) {
             setOpen(true);
         }
-    }, [coinsDetails]);
+        setLength(coinsDetails.length);
+    }, [coinsDetails, length]);
 
     const logout = () => {
         localStorage.clear();

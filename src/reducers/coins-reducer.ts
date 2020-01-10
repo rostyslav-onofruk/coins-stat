@@ -2,7 +2,8 @@ import {
     COIN_HISTORY_FETCH_FAILURE,
     COIN_HISTORY_FETCH_SUCCESS,
     COINS_FETCH_FAILURE,
-    COINS_FETCH_SUCCESS
+    COINS_FETCH_SUCCESS,
+    REMOVE_COIN_DATA
 } from '../actions/coins-actions';
 import {FullCoin, History, ShortCoin} from '../interfaces/coins';
 import {Base} from '../interfaces/base';
@@ -76,6 +77,12 @@ export default function coinsReducer(state = INITIAL_STATE, action: Action) {
         case COIN_HISTORY_FETCH_FAILURE:
             console.error('COIN_HISTORY_FETCH_FAILURE', payload);
             return {data: {...state.data}, loaded: false, error: true};
+        case REMOVE_COIN_DATA:
+            const newCoinsDetails = [...state.data.coinsDetails];
+            const index = state.data.coinsDetails.map(coin => coin.id).indexOf(payload.id);
+            newCoinsDetails.splice(index, 1);
+
+            return {data: {...state.data, coinsDetails: newCoinsDetails}, loaded: false, error: true};
         default:
             return state;
     }

@@ -1,7 +1,8 @@
 import React, {FunctionComponent} from 'react';
 import {Line} from 'react-chartjs-2';
-import {Card, CardActions, CardContent, Fab, Typography} from "@material-ui/core";
-import Refresh from '@material-ui/icons/Refresh';
+import {Card, CardActions, CardContent, Fab, Typography, IconButton} from "@material-ui/core";
+import RefreshIcon from '@material-ui/icons/Refresh';
+import DeleteIcon from '@material-ui/icons/Delete';
 import {FullCoin, History} from "../../interfaces/coins";
 
 import classes from './CoinCard.scss';
@@ -9,10 +10,11 @@ import classes from './CoinCard.scss';
 export interface Props {
    coin: FullCoin;
    refreshData: (id: number) => void;
+   removeCoin: (id: number) => void;
 }
 
 const CoinCard: FunctionComponent<Props> = (props: Props) => {
-    const {coin, refreshData} = props;
+    const {coin, refreshData, removeCoin} = props;
 
     const data = {
         labels: [...coin.history.map((history: History) => formattingDate(new Date(history.timestamp)))],
@@ -64,13 +66,18 @@ const CoinCard: FunctionComponent<Props> = (props: Props) => {
             <div className={classes.cardHeader}>
                 <div>
                     <img src={coin.iconUrl} alt={coin.name} className={classes.bigCoinImage}/>
-                    <div>{coin.name}</div>
+                    <div>
+                        <div>{coin.name}</div>
+                        <div className={classes.rank}>Rank: {coin.rank}</div>
+                    </div>
                 </div>
                 <div>
-                    <div>Rank: {coin.rank}</div>
-                    <Fab color="secondary" aria-label="refresh" onClick={() => refreshData(coin.id)}>
-                        <Refresh />
+                    <Fab color="secondary" aria-label="refresh" size="small" onClick={() => refreshData(coin.id)}>
+                        <RefreshIcon />
                     </Fab>
+                    <IconButton aria-label="delete">
+                        <DeleteIcon fontSize="small" onClick={() => removeCoin(coin.id)} />
+                    </IconButton>
                 </div>
             </div>
             <CardContent>
