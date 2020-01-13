@@ -47,9 +47,7 @@ export const fetchCoin = (id: number) => (dispatch: Dispatch<Arg>) => {
         });
 };
 
-export const removeCoinData = (id: number) => (dispatch: Dispatch<Arg>) => {
-    dispatch({
-        type: REMOVE_COIN_DATA,
-        payload: {id}
-    });
-};
+export const removeCoinData = (id: number) => ({
+    type: REMOVE_COIN_DATA,
+    payload: {id}
+});

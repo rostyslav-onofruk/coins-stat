@@ -1,11 +1,10 @@
 import React, {FC, useEffect, useState} from 'react';
-import {useSelector} from "react-redux";
-import {AppBar, Avatar, Button, Toolbar, Snackbar} from "@material-ui/core";
+import {useSelector} from 'react-redux';
+import {AppBar, Avatar, Button, Toolbar, Snackbar} from '@material-ui/core';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import {GoogleLogout} from 'react-google-login';
-
+import {State} from '../../pages/Home/Home';
 import classes from './Header.scss';
-import {State} from "../../pages/Home/Home";
 
 const Header: FC = () => {
     const [open, setOpen] = useState(false);
@@ -49,7 +48,7 @@ const Header: FC = () => {
                         </div>
                     </div>
                     <GoogleLogout
-                        clientId="364643492164-lj63hjopspt4epse5ldmjq4t7fjgku6e.apps.googleusercontent.com"
+                        clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}.apps.googleusercontent.com`}
                         render={(renderProps) => (
                             <Button
                                 variant="outlined"

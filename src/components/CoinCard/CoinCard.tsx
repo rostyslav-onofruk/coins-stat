@@ -75,8 +75,8 @@ const CoinCard: FunctionComponent<Props> = (props: Props) => {
                     <Fab color="secondary" aria-label="refresh" size="small" onClick={() => refreshData(coin.id)}>
                         <RefreshIcon />
                     </Fab>
-                    <IconButton aria-label="delete">
-                        <DeleteIcon fontSize="small" onClick={() => removeCoin(coin.id)} />
+                    <IconButton aria-label="delete" onClick={() => removeCoin(coin.id)}>
+                        <DeleteIcon fontSize="small" />
                     </IconButton>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button} from '@material-ui/core'
 import GoogleLogin, {GoogleLoginResponse, GoogleLoginResponseOffline} from 'react-google-login';
-import {history} from "../../routes";
+import {history} from '../../routes';
 
 import imageSrc from '../../assets/images/google_logo.png';
 import classes from './Login.scss';
@@ -40,7 +40,7 @@ const Login = () => {
                 Welcome Coins Stat App
             </div>
             <GoogleLogin
-                clientId="364643492164-lj63hjopspt4epse5ldmjq4t7fjgku6e.apps.googleusercontent.com"
+                clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}.apps.googleusercontent.com`}
                 buttonText="Login"
                 onSuccess={onSignIn}
                 onFailure={onSignIn}
