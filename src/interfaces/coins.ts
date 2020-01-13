@@ -1,18 +1,18 @@
-export interface Coin {
+export interface ShortCoin {
     id: number;
+    name: string;
+    iconUrl: string;
     rank: number;
-    type: string;
     websiteUrl: string;
     color: string;
     description: string;
-    name: string;
-    iconUrl: string;
-    symbol: string;
-    history: string[];
-    allTimeHigh: AllTimeHigh
 }
 
-export interface AllTimeHigh {
+export interface FullCoin extends ShortCoin {
+    history: History[];
+}
+
+export interface History {
     price: string;
     timestamp: number;
 }

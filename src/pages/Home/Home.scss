@@ -6,35 +6,33 @@
 
 .buttonsWrapper {
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   margin-bottom: 32px;
 
-  & > *:not(:last-child) {
-    margin-right: 8px;
+  div {
+    display: flex;
+    align-items: flex-end;
+
+    &:first-child > *:not(:last-child) {
+      margin-right: 16px;
+    }
   }
 }
 
 .coinImage {
   width: 24px;
+  margin-right: 8px;
 }
 
-.bigCoinImage {
-  width: 48px;
-  margin-right: 16px;
-}
-
-.card {
-  margin: 16px;
-}
-
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px;
-  background-color: lightgray;
-
-  div:first-child {
-    display: flex;
-    align-items: center;
-    font-size: 22px;
+.baseInfo {
+  font-size: 18px;
+  span {
+    margin-left: 4px;
+    font-weight: bold;
   }
+}
+
+.coinCardsWrapper {
+  margin: 0 -16px;
 }
