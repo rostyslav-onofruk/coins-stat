@@ -28,6 +28,13 @@ const Home: FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        // @ts-ignore
+        document.body.ononline = () => {
+            coinsDetails.forEach(({id}) => dispatch(fetchCoin(id)))
+        };
+    }, [coinsDetails, dispatch]);
+
+    useEffect(() => {
         if (!coins.length && !loaded) {
             dispatch(fetchAllCoins());
         }
