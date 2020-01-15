@@ -24,12 +24,11 @@ export interface State {
 
 const Home: FC = () => {
     const {base, coins, coinsDetails} = useSelector((state: State) => state.coinsData.data);
-    const {loaded} =  useSelector((state: State) => state.coinsData);
+    const {loaded} = useSelector((state: State) => state.coinsData);
     const [selectedId, setSelectedId] = useState(0);
     const dispatch = useDispatch();
 
     useEffect(() => {
-
         window.addEventListener('online', () => {
             coinsDetails.forEach(({id}) => dispatch(fetchCoin(id)))
         }, false);

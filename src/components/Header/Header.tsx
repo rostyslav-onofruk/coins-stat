@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {AppBar, Avatar, Button, Toolbar, Snackbar} from '@material-ui/core';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import {AppBar, Avatar, Button, Snackbar, Toolbar} from '@material-ui/core';
+import MuiAlert, {AlertProps} from '@material-ui/lab/Alert';
 import {GoogleLogout} from 'react-google-login';
 import {State} from '../../pages/Home/Home';
 import classes from './Header.scss';

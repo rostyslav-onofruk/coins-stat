@@ -19,7 +19,7 @@ const Routes: FunctionComponent = () => {
             <Switch>
                 <Route path="/login" component={Login}/>
                 <PrivateRoute path='/' isSignedIn={!!isSignedIn} component={Home}/>
-                <Redirect to="/" />
+                <Redirect to="/"/>
             </Switch>
         </Router>
     );
