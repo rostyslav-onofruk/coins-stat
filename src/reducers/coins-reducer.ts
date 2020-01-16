@@ -48,11 +48,13 @@ export default function coinsReducer(state = INITIAL_STATE, action: Action) {
     switch (type) {
         case COINS_FETCH_SUCCESS: {
             return {
-                data: {...state.data,
+                data: {
+                    ...state.data,
                     coins: [...payload.data.coins.map(({id, name, iconUrl, color, websiteUrl, rank, description}) => {
                         return {id, name, iconUrl, color, websiteUrl, rank, description}
                     })],
-                    base: {...payload.data.base}},
+                    base: {...payload.data.base}
+                },
                 loaded: true, error: false
             };
         }

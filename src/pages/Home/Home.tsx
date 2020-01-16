@@ -1,12 +1,13 @@
 import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {differenceBy} from 'lodash';
 import {Button, TextField,} from "@material-ui/core";
 import {Autocomplete} from '@material-ui/lab';
 import Header from '../../components/Header/Header';
 import CoinCard from '../../components/CoinCard/CoinCard';
 import {fetchAllCoins, fetchCoin, removeCoinData} from '../../actions/coins-actions';
 import {FullCoin, ShortCoin} from '../../interfaces/coins';
-import {Base} from "../../interfaces/base";
+import {Base} from '../../interfaces/base';
 
 import classes from './Home.scss';
 
@@ -23,9 +24,15 @@ export interface State {
 
 const Home: FC = () => {
     const {base, coins, coinsDetails} = useSelector((state: State) => state.coinsData.data);
-    const {loaded} =  useSelector((state: State) => state.coinsData);
+    const {loaded} = useSelector((state: State) => state.coinsData);
     const [selectedId, setSelectedId] = useState(0);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.addEventListener('online', () => {
+            coinsDetails.forEach(({id}) => dispatch(fetchCoin(id)))
+        }, false);
+    }, [coinsDetails, dispatch]);
 
     useEffect(() => {
         if (!coins.length && !loaded) {
@@ -56,7 +63,7 @@ const Home: FC = () => {
                     <div>
                         <Autocomplete
                             color='secondary'
-                            options={coins}
+                            options={differenceBy(coins, coinsDetails, 'id')}
                             getOptionLabel={(coin: ShortCoin) => coin.name}
                             onChange={handleChange}
                             renderOption={(coin: ShortCoin) => (
