@@ -12,6 +12,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^24.0.25",
+    "@types/lodash": "^4.14.149",
     "@types/node": "^12.12.22",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
@@ -29,6 +30,7 @@
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "chart.js": "^2.9.3",
     "css-loader": "3.2.0",
+    "dotenv": "^8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^6.6.0",
     "eslint-config-react-app": "^5.1.0",
@@ -80,8 +82,7 @@
     "webpack": "4.41.2",
     "webpack-dev-server": "3.9.0",
     "webpack-manifest-plugin": "2.2.0",
-    "workbox-webpack-plugin": "4.3.1",
-    "dotenv": "^8.2.0"
+    "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
     "start": "node scripts/start.js -p $PORT",
