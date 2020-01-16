@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Button} from '@material-ui/core'
 import GoogleLogin, {GoogleLoginResponse, GoogleLoginResponseOffline} from 'react-google-login';
 import {history} from '../../routes';
@@ -12,7 +12,7 @@ interface Profile {
     getImageUrl: Function
 }
 
-const Login = () => {
+const Login: FC  = () => {
     const [userId, setUserId] = useState(localStorage.getItem('userId'));
 
     useEffect(() => {

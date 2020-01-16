@@ -40,6 +40,8 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.16.0",
     "eslint-plugin-react-hooks": "^1.6.1",
+    "express": "latest",
+    "express-favicon": "^2.0.1",
     "file-loader": "4.3.0",
     "fs-extra": "^8.1.0",
     "history": "latest",
@@ -85,7 +87,8 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "start": "node scripts/start.js -p $PORT",
+    "dev": "node scripts/start.js -p $PORT",
+    "start": "NODE_ENV=production node server.js -p $PORT",
     "build": "node scripts/build.js",
     "heroku-postbuild": "npm run build",
     "test": "node scripts/test.js"
