@@ -5,6 +5,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {persistReducer, persistStore} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import {Provider} from 'react-redux';
+import './index.css';
 import Routes from './routes';
 import * as serviceWorker from './serviceWorker';
 
