@@ -29,9 +29,8 @@ const Home: FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        window.addEventListener('online', () => {
-            coinsDetails.forEach(({id}) => dispatch(fetchCoin(id)))
-        }, false);
+        // @ts-ignore
+        document.body.ononline = () => coinsDetails.forEach(({id}) => dispatch(fetchCoin(id)));
     }, [coinsDetails, dispatch]);
 
     useEffect(() => {
