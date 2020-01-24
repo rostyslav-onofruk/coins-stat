@@ -61,6 +61,7 @@ const Home: FC = () => {
                 <div className={classes.buttonsWrapper}>
                     <div>
                         <Autocomplete
+                            id='autocomplete-input'
                             color='secondary'
                             options={differenceBy(coins, coinsDetails, 'id')}
                             getOptionLabel={(coin: ShortCoin) => coin.name}
