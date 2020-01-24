@@ -8,7 +8,7 @@ const mockStore = configureMockStore();
 const store = mockStore({coinsData: {data: {base: {symbol: 'USD', sign: '$'}, coinsDetails: [], coins: [{}]}}});
 
 describe('<Home />', () => {
-    test('check refresh func call', async () => {
+    test('check displaying base info', async () => {
         const {findByText} = render(
             <Provider store={store}>
                 <Home/>
