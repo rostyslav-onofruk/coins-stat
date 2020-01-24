@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
 import {Card, CardActions, CardContent, Fab, IconButton, Typography} from "@material-ui/core";
 import RefreshIcon from '@material-ui/icons/Refresh';
@@ -15,6 +15,13 @@ export interface Props {
 
 const CoinCard: FunctionComponent<Props> = (props: Props) => {
     const {coin, refreshData, removeCoin} = props;
+    const [intervalId, setIntervalId] = useState<undefined | NodeJS.Timeout>(undefined);
+
+    useEffect(() => {
+        if (!intervalId) {
+            setIntervalId(setInterval(() => refreshData(coin.id), 1000 * 60 * 5));
+        }
+    }, [refreshData, intervalId, setIntervalId, coin.id]);
 
     const data = {
         labels: [...coin.history.map((history: History) => formattingDate(new Date(history.timestamp)))],
@@ -72,10 +79,10 @@ const CoinCard: FunctionComponent<Props> = (props: Props) => {
                     </div>
                 </div>
                 <div>
-                    <Fab color="secondary" aria-label="refresh" size="small" onClick={() => refreshData(coin.id)}>
+                    <Fab id={`refresh-${coin.name}`} color="secondary" aria-label="refresh" size="small" onClick={() => refreshData(coin.id)}>
                         <RefreshIcon/>
                     </Fab>
-                    <IconButton aria-label="delete" onClick={() => removeCoin(coin.id)}>
+                    <IconButton id={`delete-${coin.name}`} aria-label="delete" onClick={() => removeCoin(coin.id)}>
                         <DeleteIcon fontSize="small"/>
                     </IconButton>
                 </div>
