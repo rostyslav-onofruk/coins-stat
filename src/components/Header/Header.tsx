@@ -6,8 +6,14 @@ import {GoogleLogout} from 'react-google-login';
 import {State} from '../../pages/Home/Home';
 import classes from './Header.scss';
 
+interface AlertData {
+    severity: "success" | "error" | "info" | "warning" | undefined;
+    text: string
+}
+
 const Header: FC = () => {
     const [open, setOpen] = useState(false);
+    const [alertData, setAlertData] = useState<AlertData>({text: '', severity: undefined});
     const [isFirstLoad, setIsFirstLoad] = useState(true);
     const imgSrc = localStorage.getItem('userImg') as string;
     const userName = localStorage.getItem('userName') as string;
@@ -15,10 +21,19 @@ const Header: FC = () => {
 
     useEffect(() => {
         if (coinsDetails.length || !isFirstLoad) {
+            setAlertData({text: 'Data successfully updated!', severity: 'success'});
             setOpen(true);
             setIsFirstLoad(false);
         }
     }, [coinsDetails, isFirstLoad]);
+
+    useEffect(() => {
+        // @ts-ignore
+        document.body.onoffline = () => {
+            setAlertData({text: 'Offline mode! No internet connection!', severity: 'error'});
+            setOpen(true);
+        };
+    }, []);
 
     const logout = () => {
         localStorage.clear();
@@ -43,9 +58,7 @@ const Header: FC = () => {
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.userInfo}>
                         <Avatar alt="user avatar" src={imgSrc}/>
-                        <div>
-                            {userName}
-                        </div>
+                        {userName}
                     </div>
                     <GoogleLogout
                         clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}.apps.googleusercontent.com`}
@@ -64,9 +77,9 @@ const Header: FC = () => {
                     </GoogleLogout>
                 </Toolbar>
             </AppBar>
-            <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
-                <Alert severity="success">
-                    Data successfully updated!
+            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+                <Alert severity={alertData.severity}>
+                    {alertData.text}
                 </Alert>
             </Snackbar>
         </>

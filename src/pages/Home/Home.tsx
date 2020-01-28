@@ -29,9 +29,8 @@ const Home: FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        window.addEventListener('online', () => {
-            coinsDetails.forEach(({id}) => dispatch(fetchCoin(id)))
-        }, false);
+        // @ts-ignore
+        document.body.ononline = () => coinsDetails.forEach(({id}) => dispatch(fetchCoin(id)));
     }, [coinsDetails, dispatch]);
 
     useEffect(() => {
@@ -62,6 +61,7 @@ const Home: FC = () => {
                 <div className={classes.buttonsWrapper}>
                     <div>
                         <Autocomplete
+                            id='autocomplete-input'
                             color='secondary'
                             options={differenceBy(coins, coinsDetails, 'id')}
                             getOptionLabel={(coin: ShortCoin) => coin.name}
