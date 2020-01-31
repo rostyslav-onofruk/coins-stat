@@ -1,10 +1,11 @@
 import React, {FC, useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppBar, Avatar, Button, Snackbar, Toolbar} from '@material-ui/core';
 import MuiAlert, {AlertProps} from '@material-ui/lab/Alert';
 import {GoogleLogout} from 'react-google-login';
 import {State} from '../../pages/Home/Home';
 import classes from './Header.scss';
+import {clearCoins} from "../../actions/coins-actions";
 
 interface AlertData {
     severity: "success" | "error" | "info" | "warning" | undefined;
@@ -12,6 +13,7 @@ interface AlertData {
 }
 
 const Header: FC = () => {
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [alertData, setAlertData] = useState<AlertData>({text: '', severity: undefined});
     const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -36,6 +38,7 @@ const Header: FC = () => {
     }, []);
 
     const logout = () => {
+        dispatch(clearCoins());
         localStorage.clear();
         window.dispatchEvent(new Event('storage'));
     };

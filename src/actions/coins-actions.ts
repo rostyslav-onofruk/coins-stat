@@ -6,6 +6,7 @@ export const COINS_FETCH_FAILURE = 'COINS_FETCH_FAILURE';
 export const COIN_HISTORY_FETCH_SUCCESS = 'COIN_HISTORY_FETCH_SUCCESS';
 export const COIN_HISTORY_FETCH_FAILURE = 'COIN_HISTORY_FETCH_FAILURE';
 export const REMOVE_COIN_DATA = 'REMOVE_COIN_DATA';
+export const REMOVE_ALL_COINS = 'REMOVE_ALL_COINS';
 
 interface Arg {
     type: string;
@@ -50,4 +51,8 @@ export const fetchCoin = (id: number) => (dispatch: Dispatch<Arg>) => {
 export const removeCoinData = (id: number) => ({
     type: REMOVE_COIN_DATA,
     payload: {id}
+});
+
+export const clearCoins = () => ({
+    type: REMOVE_ALL_COINS
 });
