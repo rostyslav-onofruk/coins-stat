@@ -37,7 +37,7 @@ const Login: FC  = () => {
     return (
         <div className={classes.content}>
             <div>
-                Welcome Coins Stat App
+                Welcome to Coins Stat App!
             </div>
             <GoogleLogin
                 clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}.apps.googleusercontent.com`}
