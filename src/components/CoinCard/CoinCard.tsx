@@ -1,11 +1,11 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
-import {Line} from 'react-chartjs-2';
 import {Card, CardActions, CardContent, Fab, IconButton, Typography} from "@material-ui/core";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {FullCoin, History} from "../../interfaces/coins";
+import {FullCoin} from "../../interfaces/coins";
 
 import classes from './CoinCard.scss';
+import Chart from "../Chart/Chart";
 
 export interface Props {
     coin: FullCoin;
@@ -23,72 +23,27 @@ const CoinCard: FunctionComponent<Props> = (props: Props) => {
         }
     }, [refreshData, intervalId, setIntervalId, coin.id]);
 
-    const data = {
-        labels: [...coin.history.map((history: History) => formattingDate(new Date(history.timestamp)))],
-        datasets: [
-            {
-                label: `${coin.name} statistics`,
-                fill: false,
-                lineTension: 0.1,
-                backgroundColo: coin.color || '#000',
-                borderColor: coin.color || '#000',
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: coin.color || '#000',
-                pointBackgroundColor: '#fff',
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: coin.color || '#000',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
-                pointHoverBorderWidth: 2,
-                pointRadius: 1,
-                pointHitRadius: 10,
-                data: [...coin.history.map((history: History) => Number(history.price).toFixed(2))],
-            },
-        ],
-    };
-
-    const options = {
-        legend: {
-            onClick: (e: Event) => {
-                e.stopPropagation();
-                e.preventDefault();
-            }
-        },
-    };
-
-    function formattingDate(date: Date) {
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        const day = date.getDate();
-        const monthIndex = date.getMonth();
-
-        return `${day}/${monthIndex + 1} ${hours}:${minutes + 1}`;
-    }
-
     return (
         <Card className={classes.card}>
             <div className={classes.cardHeader}>
                 <div>
                     <img src={coin.iconUrl} alt={coin.name} className={classes.bigCoinImage}/>
                     <div>
-                        <div>{coin.name}</div>
+                        <div id={`coin-${coin.id}`}>{coin.name}</div>
                         <div className={classes.rank}>Rank: {coin.rank}</div>
                     </div>
                 </div>
                 <div>
-                    <Fab id={`refresh-${coin.name}`} color="secondary" aria-label="refresh" size="small" onClick={() => refreshData(coin.id)}>
+                    <Fab id={`refresh-${coin.id}`} color="secondary" aria-label="refresh" size="small" onClick={() => refreshData(coin.id)}>
                         <RefreshIcon/>
                     </Fab>
-                    <IconButton id={`delete-${coin.name}`} aria-label="delete" onClick={() => removeCoin(coin.id)}>
+                    <IconButton id={`delete-${coin.id}`} aria-label="delete" onClick={() => removeCoin(coin.id)}>
                         <DeleteIcon fontSize="small"/>
                     </IconButton>
                 </div>
             </div>
             <CardContent>
-                <Line data={data} options={options}/>
+                <Chart color={coin.color} name={coin.name} history={coin.history} />
                 <Typography variant="body2" color="textSecondary" component="p">
                     {coin.description}
                 </Typography>

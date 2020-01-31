@@ -2,7 +2,7 @@ import {
     COIN_HISTORY_FETCH_FAILURE,
     COIN_HISTORY_FETCH_SUCCESS,
     COINS_FETCH_FAILURE,
-    COINS_FETCH_SUCCESS,
+    COINS_FETCH_SUCCESS, REMOVE_ALL_COINS,
     REMOVE_COIN_DATA
 } from '../actions/coins-actions';
 import {FullCoin, History, ShortCoin} from '../interfaces/coins';
@@ -85,6 +85,8 @@ export default function coinsReducer(state = INITIAL_STATE, action: Action) {
             newCoinsDetails.splice(index, 1);
 
             return {data: {...state.data, coinsDetails: newCoinsDetails}, loaded: false, error: true};
+        case REMOVE_ALL_COINS:
+            return INITIAL_STATE;
         default:
             return state;
     }
